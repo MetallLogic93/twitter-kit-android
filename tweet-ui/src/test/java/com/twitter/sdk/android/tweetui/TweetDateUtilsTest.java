@@ -29,6 +29,7 @@ import org.robolectric.RuntimeEnvironment;
 
 import java.util.TimeZone;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(RobolectricTestRunner.class)
@@ -111,8 +112,12 @@ public class TweetDateUtilsTest {
     @Test
     public void testGetRelativeTimeString_daysAgo() {
         final long twoDaysAgo = NOW_IN_MILLIS - DateUtils.DAY_IN_MILLIS * 2;
-        assertEquals("Mar 18",
-                TweetDateUtils.getRelativeTimeString(resources, NOW_IN_MILLIS, twoDaysAgo));
+        if (System.getProperty("user.language").equals("de"))
+            assertEquals("Mär 18",
+                    TweetDateUtils.getRelativeTimeString(resources, NOW_IN_MILLIS, twoDaysAgo));
+        else
+            assertEquals("Mar 18",
+                    TweetDateUtils.getRelativeTimeString(resources, NOW_IN_MILLIS, twoDaysAgo));
     }
 
     @Test

@@ -45,6 +45,7 @@ public class IntentUtils {
      */
     public static boolean safeStartActivity(Context context, Intent intent) {
         if (isActivityAvailable(context, intent)) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
             return true;
         }

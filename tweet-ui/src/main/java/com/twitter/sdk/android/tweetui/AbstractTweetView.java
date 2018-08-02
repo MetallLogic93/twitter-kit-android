@@ -246,6 +246,7 @@ abstract class AbstractTweetView extends RelativeLayout{
 
     void launchPermalink() {
         final Intent intent = new Intent(Intent.ACTION_VIEW, getPermalinkUri());
+        intent.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
         if (!IntentUtils.safeStartActivity(getContext(), intent)) {
             Twitter.getLogger().e(TweetUi.LOGTAG, "Activity cannot be found to open permalink URI");
         }
